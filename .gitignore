@@ -1,0 +1,88 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.dll
+*.pyd
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+.python-version
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+.env.production
+.env.development
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# Logs and databases
+*.log
+*.pid
+*.seed
+*.log.*
+
+# pytest / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+.tox
+coverage.xml
+junit.xml
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# Jupyter notebooks
+.ipynb_checkpoints/
+*.ipynb
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
+*.whl
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+
+# Test data (optional - uncomment if you want to include test data)
+# chat.txt
+# chat_rules.txt
+# meeting.txt
+# simulated_chatlog.txt
+# generate_simulated_data.py
