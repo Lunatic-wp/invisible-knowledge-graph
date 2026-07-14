@@ -4,68 +4,91 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>职场隐形知识图谱</title>
+    <!-- 引入样式文件 -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <!-- 主容器：采用 Flex 布局，左侧边栏 + 右侧主内容区 -->
     <div class="app-container">
+        <!-- 左侧边栏：包含数据上传、知识检索、离职员工分析三个功能区域 -->
         <div class="sidebar">
+            <!-- 标题区域 -->
             <h1>职场隐形知识图谱</h1>
             <p class="subtitle">从会议与聊天中提取结构化知识</p>
 
+            <!-- 数据上传区域 -->
             <div class="section">
                 <div class="section-title">数据上传</div>
+                
+                <!-- 会议记录文件上传 -->
                 <div class="form-group">
                     <label class="form-label">会议记录文件</label>
+                    <!-- 上传区域：支持点击选择和拖拽上传 -->
                     <div class="upload-area" id="meetingUpload" onclick="document.getElementById('meetingFile').click()">
                         <div style="font-size:32px;margin-bottom:12px;opacity:0.6;">📋</div>
                         <div class="upload-text" id="meetingText">点击或拖拽上传会议记录</div>
                         <div class="upload-hint">支持 .txt 格式文件，可多选</div>
+                        <!-- 已选择文件列表 -->
                         <div class="upload-file-list" id="meetingFileName"></div>
                     </div>
+                    <!-- 隐藏的文件输入框：用于实际的文件选择 -->
                     <input type="file" id="meetingFile" accept=".txt" multiple style="display:none;" onchange="handleFileSelect(this, 'meeting')">
                 </div>
 
+                <!-- 聊天记录文件上传 -->
                 <div class="form-group">
                     <label class="form-label">聊天记录文件</label>
+                    <!-- 上传区域：支持点击选择和拖拽上传 -->
                     <div class="upload-area" id="chatUpload" onclick="document.getElementById('chatFile').click()">
                         <div style="font-size:32px;margin-bottom:12px;opacity:0.6;">💬</div>
                         <div class="upload-text" id="chatText">点击或拖拽上传聊天记录</div>
                         <div class="upload-hint">支持 .txt 格式文件，可多选</div>
+                        <!-- 已选择文件列表 -->
                         <div class="upload-file-list" id="chatFileName"></div>
                     </div>
+                    <!-- 隐藏的文件输入框：用于实际的文件选择 -->
                     <input type="file" id="chatFile" accept=".txt" multiple style="display:none;" onchange="handleFileSelect(this, 'chat')">
                 </div>
 
+                <!-- 上传并解析按钮 -->
                 <button class="btn btn-primary" onclick="uploadFiles()" style="width:100%;">
                     <span id="uploadBtnText">上传并解析数据</span>
                     <span id="uploadLoading" class="loading" style="display:none;margin-left:8px;"></span>
                 </button>
             </div>
 
+            <!-- 知识检索区域 -->
             <div class="section">
                 <div class="section-title">知识检索</div>
                 <div class="form-group">
                     <label class="form-label">关键词</label>
+                    <!-- 搜索输入框 -->
                     <input type="text" class="form-input" id="searchInput" placeholder="输入关键词搜索决策链...">
                 </div>
+                <!-- 检索按钮 -->
                 <button class="btn btn-success" onclick="searchKnowledge()" style="width:100%;">
                     <span id="searchBtnText">检索知识</span>
                     <span id="searchLoading" class="loading" style="display:none;margin-left:8px;"></span>
                 </button>
             </div>
 
+            <!-- 离职员工分析区域 -->
             <div class="section">
                 <div class="section-title">离职员工分析</div>
                 <div class="form-group">
                     <label class="form-label">员工姓名</label>
+                    <!-- 员工姓名输入框 -->
                     <input type="text" class="form-input" id="lossInput" placeholder="输入员工姓名，如：李工">
                 </div>
+                <!-- 计算流失成本按钮 -->
                 <button class="btn btn-primary" onclick="analyzeEmployeeLoss()" style="width:100%;">
                     <span id="lossBtnText">计算流失成本</span>
                     <span id="lossLoading" class="loading" style="display:none;margin-left:8px;"></span>
                 </button>
 
+                <!-- 分析结果面板（默认隐藏） -->
                 <div id="lossResult" class="loss-result" style="display:none;">
+                    <!-- 统计数据 -->
                     <div class="loss-stat">
                         <div class="stat-item">
                             <div class="stat-value" id="lossDecisions">0</div>
@@ -80,25 +103,31 @@
                             <div class="stat-label">重建耗时(小时)</div>
                         </div>
                     </div>
+                    <!-- 风险进度条 -->
                     <div class="progress-bar">
                         <div class="progress-fill" id="lossProgress" style="width:0%;"></div>
                     </div>
+                    <!-- 风险评估文字 -->
                     <div style="font-size:12px;color:#888;">流失风险评估：<span id="lossRisk" style="color:#28a745;">低</span></div>
                 </div>
             </div>
         </div>
 
+        <!-- 右侧主内容区：显示搜索结果的时间线视图 -->
         <div class="main-content">
+            <!-- 空状态提示（初始显示） -->
             <div id="emptyState" class="empty-state">
                 <div class="empty-icon">🔍</div>
                 <div class="empty-title">开始探索知识图谱</div>
                 <div class="empty-desc">请上传会议和聊天文件，或输入关键词检索知识</div>
             </div>
 
+            <!-- 时间线视图（上传文件或搜索后显示） -->
             <div id="timeline" class="timeline" style="display:none;"></div>
         </div>
     </div>
 
+    <!-- 引入前端逻辑文件 -->
     <script src="js/app.js"></script>
 </body>
 </html>

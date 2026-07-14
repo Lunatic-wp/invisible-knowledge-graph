@@ -1,91 +1,382 @@
+/* ==================== 全局重置与基础样式 ==================== */
+/* 使用通配符选择器重置所有元素的默认边距和内边距 */
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif; background: #1a1a1a; color: #fff; min-height: 100vh; }
+
+/* 基础 body 样式：深色背景主题，确保页面填满视口 */
+body { 
+    font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif; 
+    background: #1a1a1a; 
+    color: #fff; 
+    min-height: 100vh; 
+}
+
+/* 主容器：Flex 布局，左右分栏 */
 .app-container { display: flex; height: 100vh; }
 
-.sidebar { width: 30%; background: #242424; border-right: 1px solid #333; padding: 24px; overflow-y: auto; }
-.main-content { width: 70%; background: #1a1a1a; padding: 24px; overflow-y: auto; position: relative; }
 
-h1 { font-size: 24px; font-weight: 600; margin-bottom: 8px; background: linear-gradient(90deg, #007bff, #28a745); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+/* ==================== 布局样式 ==================== */
+/* 左侧边栏：占 30% 宽度，深色背景，右侧边框分隔 */
+.sidebar { 
+    width: 30%; 
+    background: #242424; 
+    border-right: 1px solid #333; 
+    padding: 24px; 
+    overflow-y: auto;  /* 内容超出时可滚动 */
+}
+
+/* 右侧主内容区：占 70% 宽度，稍浅背景，相对定位 */
+.main-content { 
+    width: 70%; 
+    background: #1a1a1a; 
+    padding: 24px; 
+    overflow-y: auto; 
+    position: relative; 
+}
+
+
+/* ==================== 标题样式 ==================== */
+/* 主标题：渐变文字效果，增强视觉吸引力 */
+h1 { 
+    font-size: 24px; 
+    font-weight: 600; 
+    margin-bottom: 8px; 
+    background: linear-gradient(90deg, #007bff, #28a745); 
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent; 
+}
+
+/* 副标题：灰色小字，补充说明 */
 .subtitle { font-size: 14px; color: #888; margin-bottom: 32px; }
 
-.section { margin-bottom: 32px; }
-.section-title { font-size: 16px; font-weight: 500; color: #007bff; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
-.section-title::before { content: ''; width: 4px; height: 16px; background: #007bff; border-radius: 2px; }
 
-.upload-area { border: 2px dashed #444; border-radius: 12px; padding: 24px; text-align: center; cursor: pointer; transition: all 0.3s; background: #2a2a2a; }
-.upload-area:hover, .upload-area.dragover { border-color: #007bff; background: #2d2d2d; box-shadow: 0 0 20px rgba(0,123,255,0.2); }
+/* ==================== 功能区域样式 ==================== */
+/* 区域容器：底部外边距分隔各功能区 */
+.section { margin-bottom: 32px; }
+
+/* 区域标题：蓝色文字，左侧竖线装饰 */
+.section-title { 
+    font-size: 16px; 
+    font-weight: 500; 
+    color: #007bff; 
+    margin-bottom: 16px; 
+    display: flex; 
+    align-items: center; 
+    gap: 8px; 
+}
+/* 区域标题左侧装饰线 */
+.section-title::before { 
+    content: ''; 
+    width: 4px; 
+    height: 16px; 
+    background: #007bff; 
+    border-radius: 2px; 
+}
+
+
+/* ==================== 文件上传区域样式 ==================== */
+/* 上传区域：虚线边框，圆角，悬停时高亮 */
+.upload-area { 
+    border: 2px dashed #444; 
+    border-radius: 12px; 
+    padding: 24px; 
+    text-align: center; 
+    cursor: pointer; 
+    transition: all 0.3s; 
+    background: #2a2a2a; 
+}
+
+/* 上传区域悬停/拖拽状态：边框变蓝，背景变亮，发光效果 */
+.upload-area:hover, .upload-area.dragover { 
+    border-color: #007bff; 
+    background: #2d2d2d; 
+    box-shadow: 0 0 20px rgba(0,123,255,0.2); 
+}
+
+/* 上传图标占位 */
 .upload-area i { font-size: 32px; margin-bottom: 12px; opacity: 0.6; }
+
+/* 上传提示文字 */
 .upload-text { font-size: 14px; color: #888; margin-bottom: 8px; }
+
+/* 上传格式提示 */
 .upload-hint { font-size: 12px; color: #666; }
+
+/* 已上传文件名样式（旧版，保留兼容性） */
 .upload-file-name { font-size: 12px; color: #28a745; margin-top: 8px; }
+
+/* 文件列表容器：最大高度限制，超出可滚动 */
 .upload-file-list { margin-top: 12px; max-height: 120px; overflow-y: auto; }
-.file-item { display: flex; align-items: center; gap: 8px; padding: 6px 10px; background: #1a1a1a; border-radius: 6px; margin-bottom: 4px; font-size: 12px; color: #28a745; }
+
+/* 文件项：Flex 布局，显示文件名、大小和删除按钮 */
+.file-item { 
+    display: flex; 
+    align-items: center; 
+    gap: 8px; 
+    padding: 6px 10px; 
+    background: #1a1a1a; 
+    border-radius: 6px; 
+    margin-bottom: 4px; 
+    font-size: 12px; 
+    color: #28a745; 
+}
+
+/* 最后一个文件项去掉底部边距 */
 .file-item:last-child { margin-bottom: 0; }
+
+/* 文件图标 */
 .file-item .file-icon { font-size: 12px; }
+
+/* 文件名：占满剩余空间，超出时省略号 */
 .file-item .file-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* 文件大小：灰色小字 */
 .file-item .file-size { color: #666; font-size: 11px; }
-.file-item .file-remove { color: #dc3545; cursor: pointer; font-size: 14px; transition: color 0.2s; }
+
+/* 删除按钮：红色，悬停时加深 */
+.file-item .file-remove { 
+    color: #dc3545; 
+    cursor: pointer; 
+    font-size: 14px; 
+    transition: color 0.2s; 
+}
 .file-item .file-remove:hover { color: #ff6b6b; }
 
-.form-group { margin-bottom: 16px; }
-.form-label { font-size: 13px; color: #aaa; margin-bottom: 8px; display: block; }
-.form-input { width: 100%; padding: 12px 16px; background: #2a2a2a; border: 1px solid #444; border-radius: 8px; color: #fff; font-size: 14px; transition: all 0.3s; outline: none; }
-.form-input:focus { border-color: #007bff; box-shadow: 0 0 15px rgba(0,123,255,0.3); }
 
-.btn { padding: 12px 24px; border: none; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.3s; }
+/* ==================== 表单样式 ==================== */
+/* 表单组：底部外边距 */
+.form-group { margin-bottom: 16px; }
+
+/* 表单标签：灰色小字，块级显示 */
+.form-label { font-size: 13px; color: #aaa; margin-bottom: 8px; display: block; }
+
+/* 表单输入框：深色背景，边框聚焦时变蓝 */
+.form-input { 
+    width: 100%; 
+    padding: 12px 16px; 
+    background: #2a2a2a; 
+    border: 1px solid #444; 
+    border-radius: 8px; 
+    color: #fff; 
+    font-size: 14px; 
+    transition: all 0.3s; 
+    outline: none; 
+}
+
+/* 输入框聚焦状态：边框变蓝，发光效果 */
+.form-input:focus { 
+    border-color: #007bff; 
+    box-shadow: 0 0 15px rgba(0,123,255,0.3); 
+}
+
+
+/* ==================== 按钮样式 ==================== */
+/* 基础按钮：圆角，过渡动画 */
+.btn { 
+    padding: 12px 24px; 
+    border: none; 
+    border-radius: 8px; 
+    font-size: 14px; 
+    font-weight: 500; 
+    cursor: pointer; 
+    transition: all 0.3s; 
+}
+
+/* 主要按钮：蓝色渐变背景 */
 .btn-primary { background: linear-gradient(135deg, #007bff, #0056b3); color: #fff; }
 .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(0,123,255,0.4); }
+
+/* 成功按钮：绿色渐变背景 */
 .btn-success { background: linear-gradient(135deg, #28a745, #1e7e34); color: #fff; }
 .btn-success:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(40,167,69,0.4); }
+
+/* 加载中按钮：灰色渐变背景 */
 .btn-loading { background: linear-gradient(135deg, #6c757d, #495057); color: #fff; }
 
-.empty-state { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; }
+
+/* ==================== 空状态样式 ==================== */
+/* 空状态：居中显示，绝对定位 */
+.empty-state { 
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    text-align: center; 
+}
+
+/* 空状态图标：大号，半透明 */
 .empty-icon { font-size: 64px; opacity: 0.3; margin-bottom: 16px; }
+
+/* 空状态标题：灰色 */
 .empty-title { font-size: 20px; color: #888; margin-bottom: 8px; }
+
+/* 空状态描述：深灰色小字 */
 .empty-desc { font-size: 14px; color: #666; }
 
+
+/* ==================== 时间线视图样式 ==================== */
+/* 时间线容器：左侧内边距，相对定位 */
 .timeline { position: relative; padding-left: 40px; }
-.timeline::before { content: ''; position: absolute; left: 15px; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, #007bff, #28a745); border-radius: 1px; box-shadow: 0 0 10px rgba(0,123,255,0.5); }
 
+/* 时间线垂直线：渐变颜色，左侧定位 */
+.timeline::before { 
+    content: ''; 
+    position: absolute; 
+    left: 15px; 
+    top: 0; 
+    bottom: 0; 
+    width: 2px; 
+    background: linear-gradient(180deg, #007bff, #28a745); 
+    border-radius: 1px; 
+    box-shadow: 0 0 10px rgba(0,123,255,0.5); 
+}
+
+/* 时间线节点：底部外边距，相对定位 */
 .timeline-node { margin-bottom: 32px; position: relative; }
-.timeline-node::before { content: ''; position: absolute; left: -34px; top: 20px; width: 12px; height: 12px; background: #007bff; border-radius: 50%; border: 3px solid #242424; box-shadow: 0 0 15px rgba(0,123,255,0.6); }
 
-.node-card { background: #242424; border-radius: 12px; padding: 20px; border: 1px solid #333; transition: all 0.3s; }
-.node-card:hover { border-color: #007bff; box-shadow: 0 0 20px rgba(0,123,255,0.15); }
+/* 时间线节点圆点：蓝色，带发光效果 */
+.timeline-node::before { 
+    content: ''; 
+    position: absolute; 
+    left: -34px; 
+    top: 20px; 
+    width: 12px; 
+    height: 12px; 
+    background: #007bff; 
+    border-radius: 50%; 
+    border: 3px solid #242424; 
+    box-shadow: 0 0 15px rgba(0,123,255,0.6); 
+}
 
+/* 节点卡片：深色背景，圆角，边框 */
+.node-card { 
+    background: #242424; 
+    border-radius: 12px; 
+    padding: 20px; 
+    border: 1px solid #333; 
+    transition: all 0.3s; 
+}
+
+/* 节点卡片悬停：边框变蓝，发光效果 */
+.node-card:hover { 
+    border-color: #007bff; 
+    box-shadow: 0 0 20px rgba(0,123,255,0.15); 
+}
+
+
+/* ==================== 节点内容样式 ==================== */
+/* 节点头部：Flex 布局，对齐标题和编号 */
 .node-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
-.node-type { padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 500; }
-.type-decision { background: rgba(0,123,255,0.2); color: #007bff; }
-.type-evidence { background: rgba(13,110,253,0.15); color: #6c757d; }
-.type-task { background: rgba(40,167,69,0.2); color: #28a745; }
-.type-client { background: rgba(255,193,7,0.2); color: #ffc107; }
-.type-rule { background: rgba(102,126,234,0.2); color: #667eea; }
-.type-warning { background: rgba(239,68,68,0.2); color: #ef4444; }
 
+/* 节点类型标签：圆角，小字体 */
+.node-type { padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 500; }
+
+/* 各类节点类型颜色 */
+.type-decision { background: rgba(0,123,255,0.2); color: #007bff; }      /* 决策：蓝色 */
+.type-evidence { background: rgba(13,110,253,0.15); color: #6c757d; }  /* 依据：灰色 */
+.type-task { background: rgba(40,167,69,0.2); color: #28a745; }        /* 任务：绿色 */
+.type-client { background: rgba(255,193,7,0.2); color: #ffc107; }      /* 客户：黄色 */
+.type-rule { background: rgba(102,126,234,0.2); color: #667eea; }      /* 经验规则：紫色 */
+.type-warning { background: rgba(239,68,68,0.2); color: #ef4444; }      /* 避坑警告：红色 */
+
+/* 节点内容：正常字体大小，行高适中 */
 .node-content { font-size: 14px; line-height: 1.6; color: #ddd; margin-bottom: 12px; }
 
+/* 节点元信息：Flex 布局，灰色小字 */
 .node-meta { display: flex; flex-wrap: wrap; gap: 16px; font-size: 12px; color: #888; }
+
+/* 元信息项：Flex 对齐 */
 .meta-item { display: flex; align-items: center; gap: 4px; }
 .meta-item i { font-size: 12px; }
 
+
+/* ==================== 子节点样式 ==================== */
+/* 子节点容器：左侧边框缩进 */
 .sub-nodes { margin-top: 16px; padding-left: 20px; border-left: 2px solid #333; }
+
+/* 子节点卡片：稍浅背景，圆角，内边距 */
 .sub-node { background: #2a2a2a; border-radius: 8px; padding: 12px; margin-bottom: 8px; }
+
+/* 最后一个子节点去掉底部边距 */
 .sub-node:last-child { margin-bottom: 0; }
 
-.loss-result { background: #242424; border-radius: 12px; padding: 20px; margin-top: 16px; border: 1px solid #333; }
+
+/* ==================== 离职分析结果样式 ==================== */
+/* 分析结果面板：深色背景，边框 */
+.loss-result { 
+    background: #242424; 
+    border-radius: 12px; 
+    padding: 20px; 
+    margin-top: 16px; 
+    border: 1px solid #333; 
+}
+
+/* 统计数据：Flex 布局，等距分布 */
 .loss-stat { display: flex; gap: 24px; margin-bottom: 16px; }
+
+/* 统计项：居中对齐 */
 .stat-item { text-align: center; }
+
+/* 统计数值：大号，加粗，蓝色 */
 .stat-value { font-size: 28px; font-weight: 700; color: #007bff; }
+
+/* 统计标签：灰色小字 */
 .stat-label { font-size: 12px; color: #888; margin-top: 4px; }
 
-.progress-bar { height: 8px; background: #333; border-radius: 4px; overflow: hidden; margin-bottom: 8px; }
-.progress-fill { height: 100%; background: linear-gradient(90deg, #007bff, #28a745); border-radius: 4px; transition: width 0.5s; }
 
-.loading { display: inline-block; width: 20px; height: 20px; border: 2px solid #333; border-top-color: #007bff; border-radius: 50%; animation: spin 1s linear infinite; }
+/* ==================== 进度条样式 ==================== */
+/* 进度条容器：深色背景，圆角 */
+.progress-bar { height: 8px; background: #333; border-radius: 4px; overflow: hidden; margin-bottom: 8px; }
+
+/* 进度条填充：渐变颜色，过渡动画 */
+.progress-fill { 
+    height: 100%; 
+    background: linear-gradient(90deg, #007bff, #28a745); 
+    border-radius: 4px; 
+    transition: width 0.5s; 
+}
+
+
+/* ==================== 加载动画样式 ==================== */
+/* 加载旋转动画：无限旋转 */
+.loading { 
+    display: inline-block; 
+    width: 20px; 
+    height: 20px; 
+    border: 2px solid #333; 
+    border-top-color: #007bff; 
+    border-radius: 50%; 
+    animation: spin 1s linear infinite; 
+}
+
+/* 旋转关键帧 */
 @keyframes spin { to { transform: rotate(360deg); } }
 
-.toast { position: fixed; top: 24px; right: 24px; padding: 16px 24px; border-radius: 8px; font-size: 14px; z-index: 9999; animation: slideIn 0.3s; }
-.toast-success { background: #28a745; color: #fff; }
-.toast-error { background: #dc3545; color: #fff; }
-.toast-warning { background: #2d2d2d; color: #fff; border: 1px solid #ffc107; box-shadow: 0 0 20px rgba(255,193,7,0.3); }
-@keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+
+/* ==================== Toast 消息样式 ==================== */
+/* Toast 容器：固定定位，右侧顶部 */
+.toast { 
+    position: fixed; 
+    top: 24px; 
+    right: 24px; 
+    padding: 16px 24px; 
+    border-radius: 8px; 
+    font-size: 14px; 
+    z-index: 9999; 
+    animation: slideIn 0.3s; 
+}
+
+/* Toast 类型颜色 */
+.toast-success { background: #28a745; color: #fff; }   /* 成功：绿色 */
+.toast-error { background: #dc3545; color: #fff; }     /* 错误：红色 */
+.toast-warning {                                       /* 警告：深色背景，黄色边框 */
+    background: #2d2d2d; 
+    color: #fff; 
+    border: 1px solid #ffc107; 
+    box-shadow: 0 0 20px rgba(255,193,7,0.3); 
+}
+
+/* Toast 滑入动画 */
+@keyframes slideIn { 
+    from { transform: translateX(100%); opacity: 0; } 
+    to { transform: translateX(0); opacity: 1; } 
+}
